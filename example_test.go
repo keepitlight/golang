@@ -63,3 +63,18 @@ func ExampleAddDays() {
 	// 36h40m0s
 	// -36h40m0s
 }
+
+func ExampleBetween() {
+	r := golang.Between(90, 100)
+	fmt.Println(r.GetLower())
+	fmt.Println(r.GetUpper())
+	fmt.Println(r.In(50), r.In(95))
+	fmt.Println(r.Pick(1, 2, 3, 4, 5, 99, 101))
+	fmt.Println(r.Unpick(1, 2, 3, 4, 5, 99, 101))
+	// output:
+	// 90
+	// 100
+	// false true
+	// [99]
+	// [1 2 3 4 5 101]
+}

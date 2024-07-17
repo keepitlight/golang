@@ -71,12 +71,36 @@ func (r *Range[T]) Pick(values ...T) (found []T) {
 	return
 }
 
+// Any return true if any value in range
+//
+// 检查是否有存在在范围内/区间内的值
+func (r *Range[T]) Any(values ...T) bool {
+	for _, v := range values {
+		if r.comparer(v, r.Lower) >= 0 && r.comparer(v, r.Upper) <= 0 {
+			return true
+		}
+	}
+	return false
+}
+
+// All return true if all value in range
+//
+// 检查是否全部值均存在在范围内/区间内
+func (r *Range[T]) All(values ...T) bool {
+	for _, v := range values {
+		if r.comparer(v, r.Lower) < 0 || r.comparer(v, r.Upper) > 0 {
+			return false
+		}
+	}
+	return true
+}
+
 // Unpick picks all value not in range
 //
 // 获取所有不在范围内/区间内的值
 func (r *Range[T]) Unpick(values ...T) (found []T) {
 	for _, v := range values {
-		if r.comparer(v, r.Lower) < 0 && r.comparer(v, r.Upper) > 0 {
+		if r.comparer(v, r.Lower) < 0 || r.comparer(v, r.Upper) > 0 {
 			found = append(found, v)
 		}
 	}
