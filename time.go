@@ -5,55 +5,6 @@ import (
 	"time"
 )
 
-// TimeRange create a new time range, nil if start or end is nil, swap if start is after end.
-//
-// 创建一个时间范围，如果 start 或 end 为 nil，则返回 nil，如果 start 在 end 之后，则交换 start 和 end
-func TimeRange(start, end *time.Time) *Range[time.Time] {
-	if start == nil || end == nil {
-		return nil
-	}
-	if start.After(*end) {
-		start, end = end, start
-	}
-	return &Range[time.Time]{
-		Lower: *start,
-		Upper: *end,
-		comparer: func(a, b time.Time) int {
-			if a.Equal(b) {
-				return 0
-			}
-			if a.Before(b) {
-				return -1
-			}
-			return 1
-		},
-	}
-}
-
-// Duration return duration of time range
-//
-// 返回时间范围的持续时长
-func Duration(t *Range[time.Time]) time.Duration {
-	if t == nil {
-		return 0
-	}
-	return t.Upper.Sub(t.Lower)
-}
-
-// Since like time.Since to create a new time range from start to now, nil if start is nil or start is after now.
-//
-// 从 start 到现在创建一个时间范围，如果 start 为 nil 或 start 在现在之后，则返回 nil
-func Since(start *time.Time) *Range[time.Time] {
-	if start == nil {
-		return nil
-	}
-	now := time.Now()
-	if start.After(now) {
-		return nil
-	}
-	return TimeRange(start, &now)
-}
-
 // AddTime to add hours, minutes, seconds, nanoseconds to time. Not change original time, return new time.
 // This function is different from the time.Time.Add method.
 //
@@ -70,7 +21,9 @@ const (
 	timeClock = 60
 	timeNano  = 1_000_000_000
 
-	Day = 24 * time.Hour
+	Day              = 24 * time.Hour
+	DateTimeZone     = "2006-01-02 15:04:05 MST"           // 带时区的普通时间格式
+	DateTimeNanoZone = "2006-01-02 15:04:05.999999999 MST" // 带时区和纳秒的普通时间格式
 )
 
 // Days to convert duration to days.
@@ -108,4 +61,25 @@ func AddDays(t time.Time, days float64) time.Time {
 	nano := int(F)
 
 	return time.Date(y, m, d+int(D), h+hours, x+minutes, s+seconds, n+nano, t.Location())
+}
+
+func TimeCompare(a, b *time.Time) int {
+	if a == nil {
+		if b == nil {
+			return 0
+		}
+		return 1
+	}
+	if b == nil {
+		return -1
+	}
+	if a.Equal(*b) {
+		return 0
+	}
+	if a.Before(*b) {
+		return -1
+	} else if a.After(*b) {
+		return 1
+	}
+	return 0
 }
