@@ -14,10 +14,12 @@ func Unbracketed(name string, brackets ...rune) (string, bool) {
 	if bl < 1 {
 		return name, false
 	}
+	sb = brackets[0]
 	if bl > 1 {
 		eb = brackets[1]
+	} else {
+		eb = sb
 	}
-	sb = brackets[0]
 	p, pw := utf8.DecodeRuneInString(name)
 	if p == utf8.RuneError {
 		return name, false
