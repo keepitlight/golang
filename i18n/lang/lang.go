@@ -37,6 +37,13 @@ const (
 )
 
 func (t Tag) String() string {
+	return string(t)
+}
+
+func (t Tag) ToLower() string {
+	if len(t) < 1 {
+		return ""
+	}
 	return strings.ToLower(string(t))
 }
 
