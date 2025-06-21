@@ -12,13 +12,11 @@ func Chunk(size int, f func(start, end int) (next bool, err error)) (count int, 
 		return
 	}
 	for {
+		count++
 		var next bool
-		if next, err = f(count*size, (count+1)*size); err != nil {
-			return
-		} else if !next {
+		if next, err = f((count-1)*size, count*size-1); err != nil || !next {
 			break
 		}
-		count++
 	}
 	return
 }
@@ -34,13 +32,11 @@ func Offset(limit int, f func(offset int) (next bool, err error)) (count int, er
 		return
 	}
 	for {
+		count++
 		var next bool
-		if next, err = f(count * limit); err != nil {
-			return
-		} else if !next {
+		if next, err = f((count - 1) * limit); err != nil || !next {
 			break
 		}
-		count++
 	}
 	return
 }
@@ -60,9 +56,7 @@ func Paged(capacity int, f func(number, start, end int) (next bool, err error)) 
 	for {
 		count++
 		var next bool
-		if next, err = f(count, (count-1)*capacity, count*capacity); err != nil {
-			return
-		} else if !next {
+		if next, err = f(count, (count-1)*capacity, count*capacity-1); err != nil || !next {
 			break
 		}
 	}

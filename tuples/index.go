@@ -181,7 +181,7 @@ func (t *Quad[A, B, C, D]) Sides() *Pair[A, D] {
 	}
 }
 
-// Inners returns a new tuple with the inner values.
+// Inners return a new tuple with the inner values.
 //
 // 将中间部分的值组成新的元组
 func (t *Quad[A, B, C, D]) Inners() *Pair[B, C] {
@@ -282,7 +282,7 @@ func (t *Quint[A, B, C, D, E]) Trailing() *Triplet[C, D, E] {
 	}
 }
 
-// Inners returns a new tuple with the inner values.
+// Inners return a new tuple with the inner values.
 //
 // 将中间部分的值组成新的元组
 func (t *Quint[A, B, C, D, E]) Inners() *Triplet[B, C, D] {
@@ -436,7 +436,7 @@ func (t *Sextet[A, B, C, D, E, F]) Trailing() *Quad[C, D, E, F] {
 	}
 }
 
-// Inners returns a new tuple with the inner values.
+// Inners return a new tuple with the inner values.
 //
 // 将中间部分的值组成新的元组
 func (t *Sextet[A, B, C, D, E, F]) Inners() *Quad[B, C, D, E] {
@@ -517,7 +517,7 @@ func (t *Sept[A, B, C, D, E, F, G]) Trailing() *Quad[D, E, F, G] {
 	}
 }
 
-// Inners returns a new tuple with the inner values.
+// Inners return a new tuple with the inner values.
 //
 // 将中间部分的值组成新的元组
 func (t *Sept[A, B, C, D, E, F, G]) Inners() *Quint[B, C, D, E, F] {
@@ -603,7 +603,7 @@ func (t *Oct[A, B, C, D, E, F, G, H]) Trailing() *Quint[D, E, F, G, H] {
 	}
 }
 
-// Inners returns a new tuple with the inner values.
+// Inners return a new tuple with the inner values.
 //
 // 将中间部分的值组成新的元组
 func (t *Oct[A, B, C, D, E, F, G, H]) Inners() *Sextet[B, C, D, E, F, G] {
@@ -692,7 +692,7 @@ func (t *Nonet[A, B, C, D, E, F, G, H, I]) Trailing() *Quint[E, F, G, H, I] {
 	}
 }
 
-// Inners returns a new tuple with the inner values.
+// Inners return a new tuple with the inner values.
 //
 // 将中间部分的值组成新的元组
 func (t *Nonet[A, B, C, D, E, F, G, H, I]) Inners() *Sept[B, C, D, E, F, G, H] {

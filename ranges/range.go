@@ -148,7 +148,7 @@ func Intersect[T any](a, b golang.Range[T]) (golang.Range[T], bool) {
 	}, true
 }
 
-// Merge combines two ranges, a and b, returning nil if they are both `nil` or non-overlapping,
+// Merge combines two ranges, a and b, returning nil if they're both `nil` or non-overlapping,
 // and the non-nil range if one of them is nil.
 //
 // 合并两个范围 a 和 b，如果它们都是 `nil` 或者不相交，则返回 nil，否则返回非空的。

@@ -22,7 +22,7 @@ type Interval[T any] interface {
 	// Next return current value and advances the interval to the next value
 	//
 	// 返回当前值并移动区间到下一个值
-	Next() (current T, endOfInterval bool)
+	Next() (current T, end bool)
 	// Init initializes or resets the interval
 	//
 	// 初始化或重置区间
