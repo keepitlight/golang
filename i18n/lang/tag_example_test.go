@@ -17,12 +17,12 @@ func ExampleEnsure() {
 
 	fmt.Println(z0, o0, z1, o1, z2, o2, z3, o3, z4, o4, z5, o5)
 	fmt.Println(e0, k0, e1, k1, e2, k2)
-	fmt.Println(EN, ZH, US, CN)
+	fmt.Println(EN, ZH, US, CN, GB)
 
 	// Output:
 	// zh true zh-cn true zh-tw true zh-hk true zh-sg true zh-mo true
 	// en true en-us true en-gb true
-	// en zh en-us zh-cn
+	// en zh en-us zh-cn en-gb
 }
 
 func ExampleSubTags() {
