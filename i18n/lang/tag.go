@@ -12,6 +12,7 @@ var Separators = []rune{
 }
 
 // Tag represents a language code of ISO639.
+//
 // 代表语言代码
 type Tag string
 
@@ -21,7 +22,7 @@ const (
 	// 未知语言代码
 	Unknown Tag = ""
 
-	// EN is the default language code.
+	// EN is the default language code of English.
 	//
 	// 默认语言代码
 	EN Tag = "en"
@@ -30,8 +31,18 @@ const (
 	// 中文语言代码
 	ZH Tag = "zh"
 
-	US Tag = "en-us" // 英语（美国）
-	CN Tag = "zh-cn" // 中文（中国）
+	// US is the English language code (US).
+	//
+	// 英语（美国）
+	US Tag = "en-us"
+	// CN is the Chinese language code (China).
+	//
+	// 中文（中国）
+	CN Tag = "zh-cn"
+	// GB is the English language code (Great Britain).
+	//
+	// 英语（英国）
+	GB Tag = "en-gb"
 )
 
 type char int
