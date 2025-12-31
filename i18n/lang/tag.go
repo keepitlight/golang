@@ -4,11 +4,19 @@ import (
 	"slices"
 )
 
+const (
+	// Separator is the default separator of a language code.
+	//
+	// 默认分隔符
+	Separator  = '-'
+	Underscore = '_'
+)
+
 // Separators is the valid language code separator. "-" is the default separator and always works.
 //
 // 指定有效的语言代码分隔符，减号是默认的分隔符，并且总是有效的
 var Separators = []rune{
-	'_',
+	Underscore,
 }
 
 // Tag represents a language code of ISO639.
@@ -65,7 +73,7 @@ func kindOf(c rune) char {
 	if c >= '0' && c <= '9' {
 		return digit // 数字
 	}
-	if c == '-' || slices.Contains(Separators, c) {
+	if c == Separator || slices.Contains(Separators, c) {
 		return separator // 分隔符
 	}
 	return unknown // 未知类型
@@ -194,9 +202,12 @@ type Scope int
 
 const (
 	// Individual represents an individual language.
-	//个体语言
+	//
+	// 个体语言
 	Individual Scope = iota
-	// Macro represents a macro languages 宏语言
+	// Macro represents a macro languages
+	//
+	// 宏语言
 	Macro
 )
 

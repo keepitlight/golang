@@ -1,6 +1,6 @@
 package tuples
 
-// Pair represents a tuple of two values.
+// The Pair represents a tuple of two values.
 //
 // 二元组
 type Pair[A, B any] struct {
