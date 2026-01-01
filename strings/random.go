@@ -125,20 +125,20 @@ func RandomBytes(length int) []byte {
 	return result
 }
 
-// RandomString to generate a random string, length < 0 returns nil,
+// RandomString to generate a random string, length < 0 returns empty,
 // notice only works for ASCII string
 //
-// 生成指定位数的安全随机字符串，length < 0 时返回 nil，注意仅适用于生成 ASCII 字符串
-func RandomString(t RandomStringType, length int) []byte {
+// 生成指定位数的安全随机字符串，length < 0 时返回空字符串，注意仅适用于生成 ASCII 字符串
+func RandomString(t RandomStringType, length int) string {
 	if length <= 0 {
-		return nil
+		return ""
 	}
 
 	var cs *[]byte
 	if v, ok := mappings[t]; ok {
 		cs = v
 	} else {
-		return nil
+		return ""
 	}
 
 	result := make([]byte, length)
@@ -149,5 +149,5 @@ func RandomString(t RandomStringType, length int) []byte {
 		result[i] = (*cs)[result[i]]
 	}
 
-	return result
+	return string(result)
 }
