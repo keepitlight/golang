@@ -10,6 +10,8 @@ const (
 	printable = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ "
 	// printable characters without spaces 不包含空格的可打印字符
 	graphical = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+	// printable characters without quotes 不包含引号的可打印字符
+	noQuote = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_{|}~"
 
 	// digits 数字
 	digits = "0123456789"
@@ -22,7 +24,7 @@ const (
 	// only uppercase alphabet 大写字母
 	alphabetUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	// hexadecimal 16进制字符
-	hex      = "0123456789abcdefABCDEF"
+	hexChar  = "0123456789abcdefABCDEF"
 	hexLower = "0123456789abcdef"
 	hexUpper = "0123456789ABCDEF"
 	// base64 64进制字符
@@ -34,6 +36,7 @@ type RandomStringType int
 const (
 	Printable RandomStringType = iota
 	Graphical
+	NoQuote
 	Digits
 	AlphabetNumeric
 	Alphabet
@@ -54,6 +57,8 @@ func getChars(t RandomStringType) string {
 	switch t {
 	case Printable:
 		return printable
+	case NoQuote:
+		return noQuote
 	case Digits:
 		return digits
 	case AlphabetNumeric:
@@ -65,7 +70,7 @@ func getChars(t RandomStringType) string {
 	case AlphabetUppercase:
 		return alphabetUppercase
 	case Hex:
-		return hex
+		return hexChar
 	case HexLower:
 		return hexLower
 	case HexUpper:
